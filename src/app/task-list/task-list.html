@@ -1,1 +1,22 @@
-<p>task-list works!</p>
+<html>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (task of tasks(); track task.id){
+                    <tr>
+                        <td scope="row"> {{ task.title }} </td>
+                        <td scope="row"> {{ task.createdAt | date}} </td>
+                        <td></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</html>
