@@ -1,6 +1,5 @@
-import { Component, signal, WritableSignal } from '@angular/core';
-import { Task } from '../models/task.model';
-import { v4 as uuid } from "uuid";
+import { TaskService } from './../task-service';
+import { Component, inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -10,21 +9,7 @@ import { DatePipe } from '@angular/common';
   styleUrl: './task-list.css',
 })
 export class TaskList {
+  private taskService = inject(TaskService);
 
-  tasks : WritableSignal<Task[]> = signal([
-    { 
-      id: uuid(),
-      title: 'Task 1',
-      description: 'Description for Task 1',
-      createdAt : new Date(),
-    },
-    { 
-      id: uuid(),
-      title: 'Task 2',
-      description: 'Description for Task 2',
-      createdAt : new Date(),
-    },
-
-  ]);
-
+  tasks = this.taskService.tasks;
 }
