@@ -13,7 +13,9 @@
                     <tr>
                         <td scope="row"> {{ task.title }} </td>
                         <td scope="row"> {{ task.createdAt | date}} </td>
-                        <td></td>
+                        <td>
+                            <a class="btn btn-primary" [routerLink]="['/update-task', task.id]">Update task</a>
+                        </td>
                     </tr>
                 }
             </tbody>

@@ -24,13 +24,25 @@ export class TaskService {
   addTask(task: Partial<Task>): void {
     this.tasks.update(tasks => [
       ...tasks,
-     {
+      {
         ...task,
         id: uuid(),
         createdAt: new Date(),
       }
-   ]);
+    ]);
   }
 
-  
+  getTask(id: string): Task {
+    const t = this.tasks().find(t => t.id === id);
+    if (!t) throw new Error(`Task not found: ${id}`);
+    return t;
+  }
+
+  updateTask(task: Task) {
+    this.tasks.update((tasks) => {
+      return tasks.map((existingTask) => existingTask.id === task.id ? task : existingTask);
+    });
+  }
+
+
 }

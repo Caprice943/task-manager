@@ -4,5 +4,6 @@ import { TaskList } from './task-list/task-list';
 
 export const routes: Routes = [
     { path:"", component: TaskList },
-    { path: "add-task", component: TaskForm}
+    { path: "add-task", component: TaskForm},
+    { path: "update-task/:id", component: TaskForm }
 ];
