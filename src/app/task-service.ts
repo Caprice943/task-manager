@@ -44,5 +44,14 @@ export class TaskService {
     });
   }
 
+  deleteTask(id: string) {
+    this.tasks.update((tasks) => {
+      return tasks.filter((task) => task.id !== id);
+    });
+  }
+
+  deleteAllTasks() {
+    this.tasks.set([]);
+  }
 
 }

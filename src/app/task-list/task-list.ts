@@ -2,10 +2,11 @@ import { TaskService } from './../task-service';
 import { Component, inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from "@angular/router";
+import { AlertBanner } from "../shared/components/alert-banner/alert-banner";
 
 @Component({
   selector: 'app-task-list',
-  imports: [DatePipe, RouterLink],
+  imports: [DatePipe, RouterLink, AlertBanner],
   templateUrl: './task-list.html',
   styleUrl: './task-list.css',
 })
@@ -13,4 +14,12 @@ export class TaskList {
   private taskService = inject(TaskService);
 
   tasks = this.taskService.tasks;
+
+  deleteTask(id: string) {
+    this.taskService.deleteTask(id);
+  }
+
+  deleteAllTasks() {
+    this.taskService.deleteAllTasks();
+  }
 }

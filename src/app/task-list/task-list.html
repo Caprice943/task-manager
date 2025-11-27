@@ -1,24 +1,33 @@
 <html>
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (task of tasks(); track task.id){
-                    <tr>
-                        <td scope="row"> {{ task.title }} </td>
-                        <td scope="row"> {{ task.createdAt | date}} </td>
-                        <td>
-                            <a class="btn btn-primary" [routerLink]="['/update-task', task.id]">Update task</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+<div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+    <table class="table table-zebra">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (task of tasks(); track task.id){
+            <tr>
+                <td scope="row"> {{ task.title }} </td>
+                <td scope="row"> {{ task.createdAt | date:'mediumDate'}} </td>
+                <td>
+                    <a class="btn btn-primary" [routerLink]="['/update-task', task.id]">Update task</a>
+                    <button class="btn btn-danger" type="button" (click)="deleteTask(task.id)">Delete</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@if(tasks().length === 0){
+<div class="alert alert-info" role="alert">
+    No tasks available. Please add a task.
+</div>
+}
+
+<app-alert-banner message="Do you really want to delete all tasks?" type="error" (onSubmit)="deleteAllTasks()"/>
 </html>
